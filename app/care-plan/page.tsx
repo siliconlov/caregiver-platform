@@ -30,16 +30,16 @@ export default async function CarePlan({
     if (!title) return;
 
     const id = crypto.randomUUID();
-    await db.prepare('INSERT INTO CareTask (id, creatorId, title, category, dueDate, isCompleted) VALUES (?, ?, ?, ?, ?, 0)').run(id, userId, title, category, targetDate);
+    await db.prepare('INSERT INTO "CareTask" (id, "creatorId", title, category, "dueDate", "isCompleted") VALUES (?, ?, ?, ?, ?, 0)').run(id, userId, title, category, targetDate);
 
     revalidatePath('/care-plan');
   }
 
   // Fetch tasks for the selected date - AWAITED
-  const dailyTasks = await db.prepare('SELECT * FROM CareTask WHERE creatorId = ? AND dueDate = ? ORDER BY id DESC').all(userId, selectedDate) as any[];
+  const dailyTasks = await db.prepare('SELECT * FROM "CareTask" WHERE "creatorId" = ? AND "dueDate" = ? ORDER BY id DESC').all(userId, selectedDate) as any[];
 
   // For the calendar "dots", we need to know WHICH days have tasks - AWAITED
-  const datesRaw = await db.prepare('SELECT DISTINCT dueDate FROM CareTask WHERE creatorId = ?').all(userId);
+  const datesRaw = await db.prepare('SELECT DISTINCT "dueDate" FROM "CareTask" WHERE "creatorId" = ?').all(userId);
   const datesWithTasks = (datesRaw as any[]).map(d => d.dueDate);
 
   // Calendar Helpers
@@ -117,16 +117,16 @@ export default async function CarePlan({
           <div className="glass-panel text-left" style={{ background: "rgba(99, 102, 241, 0.05)", borderColor: "rgba(99, 102, 241, 0.2)" }}>
             <h3 className="text-lg font-bold" style={{ marginBottom: 16 }}>+ Add Task for {selectedDate}</h3>
             <form action={addTask} className="flex-col" style={{ gap: 12 }}>
-                <input name="title" required placeholder="Task Title (e.g. Amlodipine 10mg)" style={{ padding: 12, borderRadius: 8, background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)", color: "white" }} />
+                <input name="title" required placeholder="Task Title (e.g. Amlodipine 10mg)" className="input-field" />
                 
                 <div className="grid-2" style={{ gap: 12 }}>
-                   <select name="category" style={{ padding: 12, borderRadius: 8, background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)", color: "white" }}>
+                   <select name="category" className="input-field" style={{ padding: "10px 14px" }}>
                       <option value="medication">Medication</option>
                       <option value="appointment">Appointment</option>
                       <option value="social">Social/Visit</option>
                    </select>
                    <input name="dueDate" type="hidden" value={selectedDate} />
-                   <button type="submit" className="btn-primary" style={{ height: "46px" }}>Save Task</button>
+                   <button type="submit" className="btn-primary" style={{ boxShadow: "none" }}>Save Task</button>
                 </div>
             </form>
           </div>
