@@ -57,7 +57,7 @@ class UnifiedDB {
       params.forEach((_, i) => {
         pgSql = pgSql.replace('?', `$${i + 1}`);
       });
-      return await this.neon(pgSql, params);
+      return await this.neon.query(pgSql, params);
     } else {
       const stmt = this.sqlite.prepare(sql);
       if (sql.trim().toLowerCase().startsWith('select')) {

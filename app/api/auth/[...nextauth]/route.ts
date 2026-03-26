@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         
-        const user = await db.prepare('SELECT * FROM User WHERE email = ?').get(credentials.email) as any;
+        const user = await db.prepare('SELECT * FROM "User" WHERE email = ?').get(credentials.email) as any;
 
         if (!user || !user.passwordHash) return null;
         

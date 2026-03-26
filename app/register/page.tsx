@@ -58,38 +58,38 @@ export default function Register() {
         <form onSubmit={handleSubmit} className="flex-col" style={{ gap: 20 }}>
           <div className="flex-col" style={{ gap: 8 }}>
             <label className="text-sm font-medium">Full Name</label>
-            <input 
+             <input 
               type="text" 
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Sarah Jenkins" 
-              style={{ width: "100%", padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", outline: "none" }} 
+              className="input-field"
             />
           </div>
 
           <div className="flex-col" style={{ gap: 8 }}>
             <label className="text-sm font-medium">Email Address</label>
-            <input 
+             <input 
               type="email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com" 
-              style={{ width: "100%", padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", outline: "none" }} 
+              className="input-field"
             />
           </div>
           
           <div className="flex-col" style={{ gap: 8 }}>
              <label className="text-sm font-medium">Password</label>
-             <input 
-              type="password" 
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••" 
-              style={{ width: "100%", padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", outline: "none" }} 
-            />
+              <input 
+               type="password" 
+               required
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               placeholder="••••••••" 
+               className="input-field"
+             />
           </div>
 
           <button type="submit" disabled={loading} className="btn-primary" style={{ width: "100%", marginTop: 12, opacity: loading ? 0.7 : 1 }}>

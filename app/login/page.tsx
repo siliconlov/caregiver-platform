@@ -58,13 +58,13 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="flex-col" style={{ gap: 20 }}>
           <div className="flex-col" style={{ gap: 8 }}>
             <label className="text-sm font-medium">Email Address</label>
-            <input 
+             <input 
               type="email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com" 
-              style={{ width: "100%", padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", outline: "none" }} 
+              className="input-field"
             />
           </div>
           
@@ -79,7 +79,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••" 
-              style={{ width: "100%", padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", outline: "none" }} 
+              className="input-field"
             />
           </div>
 
